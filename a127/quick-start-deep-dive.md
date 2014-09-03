@@ -1,8 +1,8 @@
-## About the example
+## About the "quick start" example
 
-Apigee 127 projects all follow a pattern similar to this hello world application. The hello world example lays down a project structure that includes a Swagger API specification (in YAML format), an implemented controller, and a base Node.js app. Let's look at these pieces one by one:
+Apigee 127 projects all follow a pattern similar to the "hello world" implementation described in [Quick start](https://github.com/apigee-127/a127-documentation/wiki/Quick-start). The quick start example lays down a project structure that includes a Swagger API specification (in YAML format), an implemented controller JavaScript file, and a base Node.js app. Let's look at these pieces one by one:
 
-### Hello world project structure
+### Quick start project structure
 
 The project files are cloned directly from the `https://github.com/apigee-127/project-skeleton` repository on GitHub. This skeleton project contains all the files and internal wirings needed for a basic Apigee 127 project. 
 
@@ -24,7 +24,7 @@ The project files are cloned directly from the `https://github.com/apigee-127/pr
      
 
 
-### The Swagger compliant API model
+### The Swagger 2.0 API Model
 
 You will find the API model in `api/swagger/swagger.yaml`. This file conforms to the Swagger 2.0 specification, which models API behavior in a standard way, and enables tooling that lets you model, test, and document your API on the fly. 
 
@@ -34,9 +34,9 @@ From the `hello-world` folder, execute:
 
     `a127 project edit`
 
-This command launches the interactive Apigee Swagger editor, which loads the project's `swagger.yaml` file. 
+This command launches the interactive Swagger editor, which loads the project's `swagger.yaml` file. 
 
-![alt text](https://raw.githubusercontent.com/WWitman/docs/master/a127/images/swagger-editor.png)
+![alt text](https://raw.githubusercontent.com/apigee-127/a127-documentation/master/a127/images/swagger-editor-2.png)
 
 Here is the entire hello-world app Swagger model. It conforms to the Swagger 2.0 specification, which is documented [here](https://github.com/reverb/swagger-spec/blob/master/versions/2.0.md). You'll notice there are several Apigee 127 specific extensions (`x-swagger-router-controller`, etc.) included in the model. These extensions are explained below. 
 
@@ -160,13 +160,13 @@ Provides middleware functions for:
 
 * [volos-swagger](https://github.com/apigee-127/volos/tree/master/swagger)
 Lets you configure volos features like caching and OAuth directly in the Swagger model file. For example, this stanza configures the volos "in memory" caching feature for your API. 
-
-    x-volos-resources:
-      cache:
-      provider: "volos-cache-memory"
-      options:
-          - "memCache"
-          - ttl: 10000
+ 
+        x-volos-resources:
+            cache:
+            provider: "volos-cache-memory"
+            options:
+                - "memCache"
+                - ttl: 10000
 
 Similarly, you could configure caching using Redis or Apigee. Refer to the [volos-swagger](https://github.com/apigee-127/volos/tree/master/swagger) documentation for more information. 
 
@@ -179,6 +179,6 @@ The pattern:
 
 is all you need to add this support to your application. Behind the scenes, the "wiring" and interaction is driven through the Swagger configuration file. The basic programming model is:
 
-1. Model your API using the Apigee Swagger editor. Define the API endpoints, request verbs, and optionally add features like volos-based caching, quota management, and OAuth. 
+1. Model your API using the Swagger editor. Define the API endpoints, request verbs, and optionally add features like volos-based caching, quota management, and OAuth. 
 2. Implement controllers to handle each request endpoint. 
 3. Drive, test, and document your API with the Swagger editor. 

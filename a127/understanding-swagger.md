@@ -16,7 +16,7 @@ To read more about Swagger, refer to:
 
 ## How does Apigee 127 use Swagger?
 
-The Swagger Editor for Apigee 127 lets you interactively model, test, and document your Apigee 127 API. This editor is part of Apigee 127, and is installed when you install Apigee 127.
+The Swagger Editor for Apigee 127 lets you design your API specification and preview its documentation for your Apigee 127 API. This editor is part of Apigee 127, and it is installed with Apigee 127.
 
 Use this editor to configure the `swagger.yaml` configuration file. A basic version of this file is provisioned with every new Apigee 127 project, and lives in `<project_root>/api/swagger/swagger.yaml`. Apigee 127 Swagger middleware extensions endpoint routing to controller files and the inclusion of features like caching, OAuth 2.0 security, quotas, and more. 
 
@@ -30,7 +30,7 @@ Behind the scenes, Apigee 127 Swagger middleware validates and processes the Swa
 2. `cd test-project`
 2. `a127 project edit`
 
-![alt text](https://raw.githubusercontent.com/WWitman/docs/master/a127/images/swagger-editor.png)
+![alt text](https://raw.githubusercontent.com/apigee-127/a127-documentation/master/a127/images/swagger-editor.png)
 
 ## Help me with YAML
 
@@ -120,6 +120,10 @@ Here's a brief description of the elements in the Apigee 127 Swagger file:
 
 *  **paths:** - (Required) Defines the available operations on the API. You'll spend most of your time configuring the paths part of the file. You can read about the path element in the [Swagger 2.0 specification](https://github.com/reverb/swagger-spec/blob/master/versions/2.0.md). In general, the paths section specifies an operation's verb (like `get`), the endpoint for an API operation (like `/hello`), query parameters, and responses. 
 
+* **definitions:** - These represent the structure of complex objects such as request and response bodies. For example, you might have a collection of `/users` that returns an array of `user` objects. You would describe these with two definitions: 1) to describe the `User` object, and 2) the definition of the `Users` array. Swagger uses [JSON-schema](http://json-schema.org/).
+
+* **parameters:** - ??NEW?UPDATE? Added recently, refer to parameter definitions as a $ref.
+
 In the Apigee 127 Swagger file, the paths section also includes these custom extensions:
 
 * **x-swagger-router-controller:** - This extension specifies the name of the controller file (hello_world.js) that will execute when this API operation is called. Controller files reside in `apis/controllers` in your Apigee 127 project. This extension is provided through the `swagger-tools` middleware module, which is included when you require the `a127-magic` module in your main Node.js app.
@@ -127,5 +131,3 @@ In the Apigee 127 Swagger file, the paths section also includes these custom ext
 * **x-volos-authorizations:** - This extension applies volos authorization to the API operation. You can use this extension to add OAuth 2.0 security, for example. For more information, see the [volos-swagger README file](https://github.com/apigee-127/volos/tree/master/swagger). ??? IS THIS APPLYING A DEFAULT? OR IS IT SIMPLY UNDEFINED? 
 
 * **x-volos-apply:** - This extension applies specified volos modules, and they use the configurations specified in the x-volos-resources extension, described previously. For more information, see the [volos-swagger README file](https://github.com/apigee-127/volos/tree/master/swagger)
-
-* **definitions:** - ??? THIS ISN'T COVERED IN THE SWAGGER 2.0 SPEC-- WHAT IS THIS SECTION FOR???
