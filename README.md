@@ -1,4 +1,1 @@
-a127-documentation
-==================
-
-Documentation for Apigee-127
+Please see the Wiki documentation here: (https://github.com/apigee-127/a127-documentation/wiki)
