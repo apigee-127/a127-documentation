@@ -1,123 +1,99 @@
 # What is Apigee 127?
 
-* Overview of Apigee 127
+* [Overview ](#overview)
+* [Programming Model](#programming_model)
 
-* Apigee 127 programming model
-    * API running in conjunction with Apigee Edge
-    * API running on Apigee Edge
-    * API running independently of Apigee Edge
+## <a name="overview"></a> Overview of Apigee 127
 
-## Overview of Apigee 127
+Apigee 127 provides the tools you need to design and build Enterprise-class APIs entirely in Node.js and deploy them on any Node.js runtime.
 
-Apigee 127 provides the tools you need to design and build Enterprise-class APIs entirely in Node.js. 
+Here's what we include:
+* A [Swagger 2.0 Editor] [swagger-editor] running locally, built for the Swagger Community by Apigee 
+* [Swagger Tools] [swagger-tools-github] Middleware for Node.js including Message Validation, Authorization and Routing
+* [Volos.js] [volos-github] Middleware for value-added functions such as Caching, Quota and OAuth 2.0
+* A Node.js version of [apigeetool] [apigeetool-github] for deploying your application to Apigee Edge
+* [Apigee-127 Command Line Interface] [a127-cli] for managing project lifecycle
+* An easy-to-manage local [Usergrid] [usergrid] runtime and portal
 
-### Apigee 127 is simple to understand
+## <a name="programming_model"></a>The Model-First Apigee 127 Programming Model
 
-1. Start by modeling your API with the Swagger editor. Try it out. Change it around. Kick the tires. 
-2. Add Enterprise-class features like caching, quotas, and OAuth security to your Swagger model with easy-to-configure Swagger extensions. 
-3. Seamlessly move your API to Node.js where your API takes advantage of Apigee 127 middleware, providing the "glue" needed for caching, quota support, OAuth 2.0 security, and other Enterprise-class features.
-4. Implement custom controllers for each of you API endpoints in Node.js. 
-5. Run and test your API locally, or deploy it to a platform like Apigee Edge, Heroku, or Elastic Beanstalk. .
+The focal point of the Apigee-127 experience is using a standard model for building APIs.  From this standard model a great deal can be inferred from your API, such as:
+* What type of resources are needed to make it run
+* What authorization scopes should be applied to which paths?
 
-### A little more detail...
-
-* Create and run a new API project in seconds with the "a127" command-line interface. It's as simple as `a127 project create myproject`. 
-
-* Design, test, and document your API with the Apigee 127 Swagger editor. To start the editor, do `a127 project edit`.
-
-  The highly interactive and intuitive Swagger editor lets you define and refine your API's operations rapidly, test them, and document them within the context of an Apigee 127 project. The API model is automatically saved in your project, and provides the "wiring" to call your custom API endpoint controllers. 
-
-    ![alt text](https://raw.githubusercontent.com/WWitman/docs/master/a127/images/swagger-editor.png)
-
-* Integrate Enterprise-class API features like caching, quotas, OAuth, and more into your API either in Node.js code or entirely through configuration in the Swagger editor. These features rely on the `volos` module. 
-
-    Integrate caching in the Swagger configuration with a custom Volos.js extension:
-
-        x-volos-resources:
-            cache:
-              provider: "volos-cache-memory"
-              options:
-                - "memCache"
-                -
-                  ttl: 10000
-
-    Or implement the same feature in Node.js code (through the Volos.js module):
-
-        var cm = require('volos-cache-memory');
-        var cache = cm.create('name', { ttl: 10000 }); 
-        cache.set('key', 'value');
-        cache.get('key', callback);
-
-* Implement custom controllers in Node.js to handle the API endpoints (like `/hello` for example!) defined in the Swagger model. 
-
-        function hello(req, res) {
-          var name = req.swagger.params.name.value;
-          var hello = name ? util.format('Hello, %s', name) : 'Hello, stranger!';
-          res.json(hello);
-        }
-  
-
-### The middleware is the key
-
-Swagger Tools middleware provides Swagger specification validation, wires up routes defined in the Swagger model to controllers, and generally, provides the "glue" that binds the Swagger model to your implementation.
-
-The `a127-magic` module loads a module called `volos-swagger`. This module allows you to add [Volos.js](https://github.com/apigee-127/volos) functionality like caching, quota, and OAuth entirely through configuration. 
-
-For example, this pattern:
-
-        var a127 = require('a127-magic');
-        app.express=require('express');
-        var app = express();
-        app.use(a127.middleware());
-
-is all you need to add this support to your application. 
-
-
-## The Apigee 127 programming model
+Combining the `swagger-tools` and Volos.js middleware Apigee-127 enables you to quickly build robust, high quality APIs by offloading a lot of the work needed to do so.  From the Swagger 2.0 model we can create the server-side flows and middleware specified in the specification and leave the core logic of the API up to API developers.
 
 The programming flow for an Apigee 127 project looks like this:
 
-![Alt text](https://raw.githubusercontent.com/WWitman/docs/master/a127/images/programming-model.png)
+![Alt text](https://raw.githubusercontent.com/apigee-127/a127-documentation/master/a127/images/programming-model.png)
 
-* Create an Apigee 127 project using the command-line interface. It's as simple as `a127 project create myproject`.
-
-* Use the Swagger editor to model, test, and document your API model. 
-
-* Apigee 127 Node.js middleware modules validate and process the resulting Swagger definition. 
-
+* Define the Swagger Model using the Swagger 2.0 Editor included with Apigee-127.
+* Annotate your resources and operations in the Swagger 2.0 model with the `x-swagger-router-controller` extension to define the name of the Controller that implements the logic behind the operation.  Example:
+```yaml
+paths:
+  /hello:
+    x-swagger-router-controller: "hello_world"  
+```
+* Utilize the `operationId` property for your operations in the Swagger 2.0 Model
+```yaml
+    get:
+      description: "Returns 'Hello' to the caller"
+      operationId: "hello"
+```
+* Optionally use the Volos.js Swagger Extensions to define Caching, Quota and OAuth configuration:
+```yaml
+x-volos-resources:
+  cache:
+    provider: volos-cache-memory
+    options:
+      name: name
+      ttl: 10000
+  quota:
+    provider: volos-quota-memory
+    options:
+      timeUnit: minute
+      interval: 1
+      allow: 2
+  oauth2:
+    provider: volos-oauth-apigee
+    options:
+      key: *apigeeProxyKey
+      uri: *apigeeProxyUri
+      validGrantTypes:
+        - client_credentials
+        - authorization_code
+        - implicit_grant
+        - password
+      passwordCheck: passwordCheck
+```
+* Optionally apply Volos.js functions to individual operations to add caching, quota and OAuth security to your API. You can integrate `volos` features directly into your Swagger model using the Volos.js Swagger Extensions or implement them programmatically in the Node.js app.  Example:
+```yaml
+  /twitter:
+    x-swagger-router-controller: twitter
+    x-volos-authorizations:
+      oauth2: {}
+    x-volos-apply:
+      cache: {}
+      quota: {}
+    get:
+       ...
+```
 * Behind the scenes, Apigee 127 wires up your app, routing HTTP requests to specific Node.js controller files. 
+* At runtime the `swagger-router` will validate & authorize the request before sending it to the 'hello' operation of the 'hello_world' controller.  By default the swagger-router looks for controllers in `[project_home]/api/controllers`
+* If configured, Volos.js Middleware will handle Caching, Quota and/or OAuth authorization
+* Finally, your controller logic will be invoked according to the `x-swagger-router-controller` specified for the resource path and the `operationId` of the corresponding operation.  By default the Controller should be in `[project_home]/api/controllers/[x-swagger-router-controller].js`
+* You can develop and test your API locally using the command `a127 project start`
+* Once you are ready to deploy your API it can run anywhere Node.js can run: custom servers, Apigee Edge, as well as other PaaS providers like Heroku or Amazon Elastic Beanstalk.  
+** However, to take advantage of the full suite of Apigee's value-added services the API should be deployed there. 
 
-* You implement your custom API logic in the controller files. 
+Want to get started?
 
-* Using `volos` modules, you can add caching, quota, and OAuth security to your API. You can integrate `volos` features directly into your Swagger model or implement them programmatically in the Node.js app. 
+* [Quick start](https://github.com/apigee-127/a127-documentation/wiki/Quick-start)
+* [Quick start deep-dive](https://github.com/apigee-127/a127-documentation/wiki/Quick-start-deep-dive)
 
-* You can run your app on Apigee Edge or in conjunction with Apigee Edge. Or, you can run your app locally or deploy it to another platform, like Heroku or Elastic Beanstalk.
-
-
-### API running in conjunction with Apigee Edge
-
-Running locally, your API make calls to Apigee Edge to handle activities like caching, quota management, and OAuth. Volos provides the glue that binds together your API implementation and Apigee Edge. 
-
-![Alt text](https://raw.githubusercontent.com/WWitman/docs/master/a127/images/with-edge.png)
-
-1. The app makes an API call and the endpoint is the Apigee agent (Volos). 
-2. Volos calls Apigee Edge to perform OAuth, Quota, or Caching. Volos only sends metadata to Edge, not the API payload. 
-3. Edge returns a response indicating whether to allow the API call.
-4. If allowed, the API call is proxied to the Node.js API implementation.
-5. The API response is returned from the API implementation.
-6. (Optional) Metadata is sent to Edge for centralized analytics and monitoring. 
-
-
-### Running the API on Apigee Edge
-
-You can deploy and run the entire API implementation on the Apigee Edge platform. 
-
-![Alt text](https://raw.githubusercontent.com/WWitman/docs/master/a127/images/on-edge.png)
-
-1. An app makes an API call to Apigee Edge. 
-2. Volos leverages direct access to Apigee Edge Services.
-3. The API call is processed using the normal Apigee Edge flow. 
-
-### Running the API independently of Apigee Edge
-
-TBD. 
+[volos-github]: https://github.com/apigee-127/volos
+[a127-cli]: https://github.com/apigee-127/a127
+[swagger-editor]: https://github.com/wordnik/swagger-editor
+[swagger-tools-github]: https://github.com/apigee-127/swagger-tools
+[apigeetool-github]: https://github.com/apigee/apigeetool-node/tree/master
+[usergrid]: http://usergrid.incubator.apache.org/

@@ -1,6 +1,6 @@
 # Apigee 127 Example Project
 
-This example gets you up and running quickly with a sample Apigee 127 project. 
+This example gets you up and running quickly with a sample Apigee 127 project that proxies the Twitter search API.  
 
 * Installation
 * Setup steps
@@ -47,7 +47,7 @@ To run the example project, you need to set up these things first:
 
     4. Deploy the proxy:
     
-        `a127 account deployApigeeProxy myaccount`
+        `a127 account deployApigeeProxy myApigeeAccount`
         
             Deploying proxy to wwitman
             Deployment
@@ -129,7 +129,7 @@ $
     
         **Note:** Be sure to copy the entire key and secret values. Sometimes if a key/secret contains a hyphen, double-clicking won't select the entire string.
 
-    2. For the `uri`, enter `https://ORG.apigee.net/volos-proxy`. Substitute `ORG` with the name of your organization. For example:
+    2. For the `uri`, enter `https://ORG.apigee.net/apigee-remote-proxy`. Substitute `ORG` with the name of your organization. For example:
 
         exports.apigee = {
           organization: 'jdoe',
@@ -162,7 +162,7 @@ Volos is an open source Node.js solution for developing and deploying production
 
 This example runs locally and makes calls to Apigee Edge to handle OAuth requests. Volos provides the glue that binds together your API implementation and Apigee Edge. 
 
-![Alt text](https://raw.githubusercontent.com/WWitman/docs/master/a127/images/with-edge.png)
+![Alt text](https://raw.githubusercontent.com/apigee-127/a127-documentation/master/a127/images/with-edge.png)
 
 1. The app makes an API call and the endpoint is the Apigee agent (Volos). 
 2. Volos calls Apigee Edge to perform OAuth, Quota, or Caching. Volos only sends metadata to Edge, not the API payload. 
