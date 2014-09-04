@@ -12,14 +12,14 @@ Please see the Wiki documentation here: (https://github.com/apigee-127/a127-docu
 
 * [Installation](https://github.com/apigee-127/a127-documentation/wiki/Installation)
 
-* [Quick Start](https://github.com/apigee-127/a127-documentation/wiki/Quick-start)
+* [Quick start](https://github.com/apigee-127/a127-documentation/wiki/Quick-start)
 
     * [Add a Quota](https://github.com/apigee-127/a127-documentation/wiki/Quick-Start:-Add-Quota)
     * [Add a Path](https://github.com/apigee-127/a127-documentation/wiki/Quick-Start:-Add-a-New-Path)
 
-* [Quick Start Deep Dive](https://github.com/apigee-127/a127-documentation/wiki/Quick-start-deep-dive)
+* [Quick start deep dive](https://github.com/apigee-127/a127-documentation/wiki/Quick-start-deep-dive)
 
-* [Twitter Search Example with Apigee 127](https://github.com/apigee-127/a127-documentation/wiki/Example-Project)
+* [Twitter search example with Apigee 127](https://github.com/apigee-127/a127-documentation/wiki/Example-Project)
 
 * [Apigee 127 modules](https://github.com/apigee-127/a127-documentation/wiki/Apigee-127-modules)
 
