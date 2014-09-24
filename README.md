@@ -35,7 +35,7 @@ You can run your API entirely locally, in conjunction with Apigee Edge, or entir
 
 * [Building an advanced weather API](http://pdl.vimeocdn.com/68903/630/285597934.mp4?token2=1411580029_3c000d7b80b0abc4255d8b5e68aacd80&amp;aksessionid=5ce6aad8a4d172a2) -- This sample uses custom Apigee-127 Swagger extensions to provide quotas, OAuth 2.0, caching, and analytics.
 
-* [Integrating the Apigee Analytics Service with Apigee-127](http://pdl.vimeocdn.com/62744/691/285569531.mp4?token2=1411575211_85ba0b6ff7127ca27252c625816d27b7&aksessionid=67c415e6e5054e55) -- This sample demonstrates how to leverage Apigee Analytics with your Apigee-127 API. 
+* [Integrating the Apigee Analytics Service with Apigee-127](http://pdl.vimeocdn.com/62744/691/285569531.mp4?token2=1411575211_85ba0b6ff7127ca27252c625816d27b7&amp;aksessionid=67c415e6e5054e55) -- This sample demonstrates how to leverage Apigee Analytics with your Apigee-127 API. 
 
 ## <a name="readabout"></a>Read Apigee-127 developer docs
 
