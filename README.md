@@ -21,7 +21,9 @@ You can run your API entirely locally, in conjunction with Apigee Edge, or entir
 ## <a name="samplescode"></a>Learn about Apigee-127 from samples and code
 
 * [Quick start](https://github.com/apigee-127/a127-documentation/wiki/Quick-start) -- Read or work through a basic end-to-end example. 
+
 * [Twitter search example with Apigee-127](https://github.com/apigee-127/example-project/blob/master/README.md) -- Learn from a working reference implementation: an Apigee-127 API that calls the Twitter Search API on the back-end.
+
 * [Sample applications](https://github.com/apigee-127/a127-samples) -- Learn from working samples including basic and advanced weather APIs built with Apigee-127.
 
 ## <a name="videos"></a>Watch videos about Apigee-127
