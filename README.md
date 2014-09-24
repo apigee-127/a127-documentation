@@ -22,7 +22,7 @@ You can run your API entirely locally, in conjunction with Apigee Edge, or entir
 
 * [Quick start](https://github.com/apigee-127/a127-documentation/wiki/Quick-start) -- Read or work through a basic end-to-end "hello world" example. Build up the basic project by adding caching, analytics, OAuth 2.0 security, and quota enforcement to the API. 
 
-* [Twitter search example with Apigee-127](https://github.com/apigee-127/example-project/blob/master/README.md) -- Learn from a working reference implementation: an Apigee-127 API that calls the Twitter Search API on the back-end.
+* [Twitter search example with Apigee-127](https://github.com/apigee-127/example-project/blob/master/README.md) -- Learn from a working reference implementation: an Apigee-127 API that calls the Twitter Search service on the back-end. 
 
 * [Sample applications](https://github.com/apigee-127/a127-samples) -- Learn from working samples including basic and advanced weather APIs built with Apigee-127.
 
