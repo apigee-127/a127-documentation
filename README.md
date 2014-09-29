@@ -2,10 +2,11 @@
 
 
 * [What is Apigee-127?](#whatis)
+* [Read Apigee-127 developer docs](#readabout)
 * [Learn about Apigee-127 from samples and code](#samplescode)
 * [Watch videos about Apigee-127](#videos)
-* [Read Apigee-127 developer docs](#readabout)
 * [Get help](#gethelp)
+
 
 ## <a name="whatis"></a>What is Apigee-127?
 
@@ -17,6 +18,10 @@ Apigee-127 is a **model-first** toolkit for building rich, enterprise-class APIs
 Open source Middleware components read, validate, and process the Swagger model and automatically wire up your Apigee-127 API project. Developers focus on implementing the API's core logic in Node.js. 
 
 You can run your API entirely locally, in conjunction with Apigee Edge, or entirely on Apigee Edge or any other PaaS that supports Node.js.
+
+## <a name="readabout"></a>Read Apigee-127 developer docs
+
+Check out the developer documentation on the [Apigee-127 documentation](https://github.com/apigee-127/a127-documentation/wiki) wiki on GitHub.
 
 ## <a name="samplescode"></a>Learn about Apigee-127 from samples and code
 
@@ -30,16 +35,13 @@ You can run your API entirely locally, in conjunction with Apigee Edge, or entir
 
 * [Introduction to Apigee-127](http://www.youtube.com/watch?v=JD4YFacOF8o) -- A short video overview of Apigee-127. 
 
-* [Hands-on Apigee-127 demo](http://pdl.vimeocdn.com/96483/339/285580526.mp4?token2=1411580517_3eccc26c57342e6e6487eb702de5aa0c&amp;aksessionid=665c17ec47221f2d) -- See how easy it is to create, edit, run, and deploy a new Apigee-127 project.
+* [Hands-on Apigee-127 demo](https://www.youtube.com/watch?v=So91lkdzDyU) -- See how easy it is to create, edit, run, and deploy a new Apigee-127 project.
 * [Building a basic weather API](http://pdl.vimeocdn.com/62744/691/285569531.mp4?token2=1411579515_7932888953fc49ef7125fdcef967b80b&amp;aksessionid=f20e8f196622695a) -- This sample implements a basic weather API in Apigee-127. 
 
 * [Building an advanced weather API](http://pdl.vimeocdn.com/68903/630/285597934.mp4?token2=1411580029_3c000d7b80b0abc4255d8b5e68aacd80&amp;aksessionid=5ce6aad8a4d172a2) -- This sample uses custom Apigee-127 Swagger extensions to provide quotas, OAuth 2.0, caching, and analytics.
 
 * [Integrating the Apigee Analytics Service with Apigee-127](http://pdl.vimeocdn.com/51764/625/285573141.mp4?token2=1411580343_80818b2645fb16c3dbcc5376b12877be&amp;aksessionid=df1515a31e72b2f3) -- This sample demonstrates how to leverage Apigee Analytics with your Apigee-127 API. 
-
-## <a name="readabout"></a>Read Apigee-127 developer docs
-
-Check out the developer documentation on the [Apigee-127 documentation](https://github.com/apigee-127/a127-documentation/wiki) wiki on GitHub. 
+ 
 
 ## <a name="gethelp"></a>Get help
 
